@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>zaptip</title>
+    <style>
+      body {
+        width: 300px;
+        margin: 0;
+        padding: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #c9d1d9;
+        background: #0d1117;
+      }
+      h1 {
+        font-size: 16px;
+        margin: 0 0 4px;
+      }
+      .tag {
+        color: #8b949e;
+        font-size: 12px;
+        margin-bottom: 14px;
+      }
+      ol {
+        margin: 0;
+        padding-left: 18px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      code {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 4px;
+        padding: 1px 5px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        color: #f7931a;
+      }
+      .note {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid #21262d;
+        color: #8b949e;
+        font-size: 12px;
+      }
+      .bolt {
+        color: #f7931a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><span class="bolt">⚡</span> zaptip</h1>
+    <div class="tag">Tip GitHub profiles with Bitcoin Lightning.</div>
+
+    <ol>
+      <li>
+        Open any GitHub profile that has a Lightning address in its bio (e.g.
+        <code>name@getalby.com</code>).
+      </li>
+      <li>
+        zaptip detects it and adds a <code>⚡ Zap</code> button near the profile
+        name.
+      </li>
+      <li>Click it, pick an amount (or enter a custom one), and confirm.</li>
+      <li>
+        If you have a WebLN wallet (like Alby), it pays directly. Otherwise a QR
+        code appears to scan with any Lightning wallet.
+      </li>
+    </ol>
+
+    <div class="note">
+      No accounts, no settings, no servers. Payments go straight from your wallet
+      to the recipient. Use a testnet/regtest address to try it safely.
+    </div>
+  </body>
+</html>
