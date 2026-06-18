@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "zaptip",
+  "name": "Zaptip",
   "version": "1.0.0",
   "description": "Tip GitHub profiles with Bitcoin Lightning payments. Detects a Lightning address in a profile bio and adds a Zap button.",
   "action": {
     "default_popup": "popup.html",
-    "default_title": "zaptip",
+    "default_title": "Zaptip",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
