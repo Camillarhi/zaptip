@@ -360,12 +360,10 @@
 
       renderLoading(body, "Requesting wallet…");
       var payResult = await weblnPay(invoice);
-      if (!payResult.hadWebln) {
-        renderQR(body, invoice);
-      } else if (payResult.ok) {
+      if (payResult.hadWebln && payResult.ok) {
         renderStatus(body, "ok", "Payment sent!", null);
       } else {
-        throw new Error(payResult.error || "Wallet payment failed.");
+        renderQR(body, invoice);
       }
     } catch (err) {
       renderStatus(
