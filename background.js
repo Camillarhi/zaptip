@@ -44,6 +44,7 @@ async function fetchLnurl(address) {
 
   return {
     ok: true,
+    tag: data.tag,
     callback: data.callback,
     minSendable: data.minSendable,
     maxSendable: data.maxSendable,

@@ -420,24 +420,49 @@
     });
   }
 
+  var lnurlValidated = {};
+  var lnurlValidating = {};
+
+  function validateLnurl(address) {
+    if (lnurlValidating[address]) return;
+    lnurlValidating[address] = true;
+    sendToBackground({ type: "zaptip-fetch-lnurl", address: address })
+      .then(function (res) {
+        delete lnurlValidating[address];
+        lnurlValidated[address] = !!(res && res.ok && res.tag === "payRequest");
+        if (lnurlValidated[address]) scheduleScan();
+      })
+      .catch(function () {
+        delete lnurlValidating[address];
+        lnurlValidated[address] = false;
+      });
+  }
+
   function scan() {
     try {
+      var injectFn = injectButton;
       var address = findLightningAddress();
-      if (address) {
-        injectButton(address);
-        return;
-      }
-
-      var segments = window.location.pathname.split("/").filter(Boolean);
-      if (segments.length === 2) {
-        var repoAddress = findRepoLightningAddress();
-        if (repoAddress) {
-          injectRepoButton(repoAddress);
-          return;
+      if (!address) {
+        var segments = window.location.pathname.split("/").filter(Boolean);
+        if (segments.length === 2) {
+          address = findRepoLightningAddress();
+          injectFn = injectRepoButton;
         }
       }
 
-      removeButton();
+      if (!address) {
+        removeButton();
+        return;
+      }
+
+      if (lnurlValidated[address] === true) {
+        injectFn(address);
+      } else if (lnurlValidated[address] === false) {
+        removeButton();
+      } else {
+        removeButton();
+        validateLnurl(address);
+      }
     } catch (e) {}
   }
 
